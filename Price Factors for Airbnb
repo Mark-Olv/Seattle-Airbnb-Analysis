@@ -1,0 +1,85 @@
+Student must have a blog post on a platform of their own choice (can be on their website, a Medium post or Github blog post). 
+The post should not dive into technical details or difficulties of the analysis - this should be saved for Github. 
+The post should be understandable for non-technical people from many fields.
+
+
+Student must have a title and image to draw readers to their post.
+
+There are no long, ongoing blocks of text without line breaks or images for separation anywhere in the post.
+
+Each question is clearly stated and each answer includes a clear visual, table, or statistic.
+
+Three questions that will be answered
+
+
+
+    Have you ever looked into traveling and thought "hotels are expensive and NOW Airbnbs are getting just as expensive." You aren't alone. It seemed like when 
+Airbnb first started, the option was worth getting instead of a hotel if you could go without the amenities. Over the recent years, housing prices have increased 
+rapidly and the change can be seen in Airbnb prices. Airbnb has its own role to play in increasing housing prices [1], people who can afford another house will buy 
+it and rent it out to Airbnbers instead of traditional long-term renters. Since Airbnb is not as consistent as long-term renters the price per stay will go up in 
+order to meet their mortgage needs and/or make a profit. It would be helpful to a traveler to know what factors will cause an increase in the price of an Airbnb. 
+
+    Instead of looking at every Airbnb in every country, I will focus on one of the most expensive cities to live in and a popular tourist destination in the 
+United State. The Seattle, Washington Airbnb dataset, this dataset was scraped on January 4, 2016, and available on Kaggle [2]. This dataset has a comprehensive 
+range of data. A more refined and up-to-date dataset is available at Inside Airbnb [3]. In my analysis, two of the three available files were used. The listings file 
+contains detailed information on each listing in the Seattle area by the listing id and the calendar file contains the listing date, listing id, availability, and 
+price.
+
+    So, what exactly should we be looking for in Airbnb to get the best price? A good start to help the average person traveling will be: What are the top 10 factors 
+contributing to price, which zip code is the most expensive to live in, and which months are most expensive? The top 10 factors will be data from the listings file
+which doesn't include the month. Spoiler alert zip code will not be in the top 10 factors but nether the less it is still an easy factor to look into when searching
+for an Airbnb.
+
+Through the mystery that is machine learning, I found that the top 10 factors that contribute to price in descending order are: 
+   number of bedrooms, 
+   weekly price, 
+   number of bathrooms, 
+   if the room type is an entire home or apartment,   
+   accommodations, 
+   cleaning fee, 
+   reviews per month, 
+   latitude, 
+   availability 365,
+   longitude. 
+   
+    If you are familiar with machine learning or interested to learn, the main tool that I used was random forests for their ability to return feature importance. 
+Let us tackle the more subtle factors. The latitude and longitude were not input in their raw form aka near 47.6 degrees and 122.3 degrees but in the analysis, 
+the data was centered around Seattle so each value was near 0 degrees. Therefore, the larger numbers in the raw form wouldn't drastically change the feature 
+importance. The model was able to learn that the location was important, the latitude and longitude were indicators of how far the Airbnb was from the center
+of Seattle. For reference, one degree of latitude is approximately 69 miles and one minute is 1.15 miles (one minute is the first place after the decimal). 
+Longitude is a different story it varies since it converges on the poles [4]. 
+    Accommodations is the variable for how many people can fit in the Airbnb, it is easy to see that the higher the accommodations the more likely a bigger 
+party will choose this Airbnb and the more expensive it is going to be for the space. Other indicators of space are the number of bedrooms, number of bathrooms, and
+if the room type is an entire home or apartment. Availability 365 is the only other variable we might question its relation to price. If the Airbnb is open to 
+guests then there are more opportunities for it to fill up.
+
+    Let's look at which zip codes are most expensive. Instead of looking at every zip code in Seattle (which seems to have more than average zip codes for its size),
+I focused on the zip codes near central Seattle since this would be more than likely where a traveler would want to stay. 
+    98101, $147.64
+    98121, $133.36
+    98104, $131.91
+    98109, $117.90
+    98119, $106.64
+With the rest of the zipcodes going down towards $100. If you are not going to be in your Airbnb often during your trip then its best to avoid the top 4 zip codes.
+
+Insert picture of the zipcodes of Seattle.
+
+If you are going to plan your trip to Seattle in advance then knowing the most expensive might be helpful. The top 3 most expensive months are June, July, and August. 
+Averaging about to be about $150 compared to the least expensive month being January with an average price of $121. The weather being a huge factor in this, there 
+is a trend of summer and fall being most expensive and winter and spring being least expensive.
+
+
+
+
+References:
+
+[1] Barker, G. (2020). The Airbnb Effect On Housing And Rent. Retrieved 6 May 2022, from 
+https://www.forbes.com/sites/garybarker/2020/02/21/the-airbnb-effect-on-housing-and-rent/?sh=7ed7eea72226
+
+[2] Seattle Airbnb Open Data. (2016). Retrieved 6 May 2022, from 
+https://www.kaggle.com/datasets/airbnb/seattle?resource=download
+
+[3] (2022). Retrieved 6 May 2022, from http://insideairbnb.com/get-the-data/
+
+[4] How much distance does a degree, minute, and second cover on your maps? | U.S. Geological Survey. Retrieved 8 May 2022, 
+from https://www.usgs.gov/faqs/how-much-distance-does-degree-minute-and-second-cover-your-maps#:~:text=One%20degree%20of%20latitude%20equals,one%20second%20equals%2080%20feet.
